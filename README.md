@@ -1,6 +1,6 @@
 # Role Ansible Master
 
-## Caractéristiques
+## CaractÃ©ristiques
 
 * Installation et configuration d'un serveur Mariadb en standalone ou en cluster
 * Architecture : X86_64
@@ -15,24 +15,24 @@ cf : <http://docs.ansible.com/ansible/playbooks_variables.html>
 ### Variables de playbook
 
 * `mariadb_root_password`:
-  * mot de passe root pour se connecter Ã  Mariadb
+  * mot de passe root pour se connecter ÃƒÂ  Mariadb
   * Variable obligatoire
   
 * `mariadb_databases`  (cf [documentation module ansible mysql_db](https://docs.ansible.com/ansible/latest/modules/mysql_db_module.html)):
-  * Liste des bases de données Ã  créer
+  * Liste des bases de donnÃ©es ÃƒÂ  crÃ©er
   * Variable non obligatoire
   * Stucture de la liste:
 
 ``` yaml
 mariadb_databases:
   - name: db1
-    encoding: <optionel, valeur par défaut `latin1`>
-    collation: <optionel, valeur par défaut `latin1_swedish_ci`>
-    state: <optionel, valeur par défaut `present`>
+    encoding: <optionel, valeur par dÃ©faut `latin1`>
+    collation: <optionel, valeur par dÃ©faut `latin1_swedish_ci`>
+    state: <optionel, valeur par dÃ©faut `present`>
 ```
 
 * `mariadb_users`:
-  * Liste des utilisateurs Ã crée
+  * Liste des utilisateurs ÃƒÂ crÃ©e
   * Variable non obligatoire
   * Stucture de la liste (cf [documentation module ansible mysql_user](https://docs.ansible.com/ansible/latest/modules/mysql_user_module.html)):
 
@@ -41,12 +41,12 @@ mariadb_users:
   - name: test1
     password: test1
     priv: "test1:ALL,GRANT"
-    host: *optionel, valeur par défaut `localhost`*
-    state: *optionel, valeur par défaut `present`*
+    host: *optionel, valeur par dÃ©faut `localhost`*
+    state: *optionel, valeur par dÃ©faut `present`*
 ```
 
 * `mariadb_root_password`:
-  * mot de passe root pour se connecter Ã  Mariadb
+  * mot de passe root pour se connecter ÃƒÂ  Mariadb
   * Variable obligatoire
 
 * `mariadb_server_package`:
@@ -57,7 +57,7 @@ mariadb_users:
 mariadb_server_package: "mariadb-server"
 ```
 
-### Variables fixe du rÃ´le (non-surchargeables)
+### Variables fixe du rÃƒÂ´le (non-surchargeables)
 
 * `mariadb_root_login`:
   * Nom du user "root" de mariaDB:
@@ -73,12 +73,12 @@ mariadb_root_login: root
 mariadb_pid_dir: /var/run/mysqld
 ```
 
-### Variables par defaut du rÃ´le (surchargeables)
+### Variables par defaut du rÃƒÂ´le (surchargeables)
 
 #### Variables communes
 
 * `is_not_openstack`:
-  * Défini si l'on est sur openstack ou non
+  * DÃ©fini si l'on est sur openstack ou non
   * Positionne le firewalld en fonction
 
 ``` yaml
@@ -86,8 +86,8 @@ is_not_openstack: false
 ```
 
 * `mode`:
-  * Défini le mode d'installation de mariadb:
-    * `Auto` (par défaut): utilisation du mode automatique, le mode d'installation va se baser sur le nombre d'item dans `mariadb_inventory_group`
+  * DÃ©fini le mode d'installation de mariadb:
+    * `Auto` (par dÃ©faut): utilisation du mode automatique, le mode d'installation va se baser sur le nombre d'item dans `mariadb_inventory_group`
     * `Standalone`: Installation en mode standalone sur chaque serveur
     * `Cluster`: Installation en mode cluster sur l'ensemble des serveurs. La variable `mariadb_inventory_group`est obligatoire pour la configuration du mode cluster dans les fichiers de config (server.cnf)
 
@@ -96,8 +96,8 @@ mode: Auto
 ```
 
 * `mariadb_packages`:
-  * Liste des paquets yum Ã  installer
-  * Sera concaténé Ã  la liste suivante:
+  * Liste des paquets yum ÃƒÂ  installer
+  * Sera concatÃ©nÃ© ÃƒÂ  la liste suivante:
 
 ``` yaml
   - MySQL-python
@@ -107,16 +107,16 @@ mode: Auto
 ```
 
 * `mariadb_datadir`:
-  * Répertoire de data de Mariadb
-  * Valeur par défaut:
+  * RÃ©pertoire de data de Mariadb
+  * Valeur par dÃ©faut:
 
 ``` yaml
 mariadb_datadir: /var/lib/mysql
 ```
 
 * `mariadb_logdir`:
-  * Répertoire de log de Mariadb
-  * Valeur par défaut:
+  * RÃ©pertoire de log de Mariadb
+  * Valeur par dÃ©faut:
 
 ``` yaml
 mariadb_logdir: /var/log/mysql
@@ -124,10 +124,10 @@ mariadb_logdir: /var/log/mysql
 
 * `mariadb_inventory_group`:
   * Nom du groupe de serveurs dans l'inventaire
-  * Cette variable sert Ã  déterminer le mode d'installation:
+  * Cette variable sert ÃƒÂ  dÃ©terminer le mode d'installation:
     * `standalone` si le groupe ne contient qu'un serveur
     * `cluster` si il en contient plus de un
-  * Valeur par défaut:
+  * Valeur par dÃ©faut:
 
 ``` yaml
 mariadb_inventory_group: mariadb_nodes
@@ -135,15 +135,15 @@ mariadb_inventory_group: mariadb_nodes
 
 * `mariadb_service_name`:
   * Nom du service
-  * Valeur par défaut:
+  * Valeur par dÃ©faut:
 
 ``` yaml
 mariadb_service_name: mariadb
 ```
 
 * `mariadb_bind_address`:
-  * Adresse sur laquelle le serveur mariadb doit écouter
-  * Valeur par défaut:
+  * Adresse sur laquelle le serveur mariadb doit Ã©couter
+  * Valeur par dÃ©faut:
 
 ``` yaml
 mariadb_bind_address: 0.0.0.0
@@ -151,15 +151,15 @@ mariadb_bind_address: 0.0.0.0
 
 * `mariadb_socket`:
   * Emplacement du fichier socket de mariaDB
-  * Valeur par défaut:
+  * Valeur par dÃ©faut:
 
 ``` yaml
 mariadb_socket: "{{ mariadb_datadir }}/mysql.sock"
 ```
 
 * `mariadb_ports`:
-  * Port d'écoute pour mariadb. Défini également le port Ã  ouvrir sur firewalld.
-  * Valeur par défaut:
+  * Port d'Ã©coute pour mariadb. DÃ©fini Ã©galement le port ÃƒÂ  ouvrir sur firewalld.
+  * Valeur par dÃ©faut:
 
 ``` yaml
 mariadb_ports:
@@ -168,31 +168,31 @@ mariadb_ports:
 ```
 
 * `host_RAM`:
-  * RAM disponible sur le serveur. Récupérée automatiquement par anible mais peut Ãªtre positionnée Ã  une valeur inférieure si le serveur n'est pas dédié.
-  * Valeur par défaut:
+  * RAM disponible sur le serveur. RÃ©cupÃ©rÃ©e automatiquement par anible mais peut ÃƒÂªtre positionnÃ©e ÃƒÂ  une valeur infÃ©rieure si le serveur n'est pas dÃ©diÃ©.
+  * Valeur par dÃ©faut:
 
 ``` yaml
 host_RAM: "{{ ansible_memory_mb.real.total }}"
 ```
 
 * `mariadb_type`:
-  * Moteur utilisé par la base de données.
+  * Moteur utilisÃ© par la base de donnÃ©es.
   * Valeurs possibles :
     * InnoDB
     * MyISAM
-  * Valeur par défaut:
+  * Valeur par dÃ©faut:
 
 ``` yaml
 mariadb_type: InnoDB
 ```
 
 * `mariadb_InnoDB`:
-  * Variable utilisé si le moteur de base de données est InnoDB.
+  * Variable utilisÃ© si le moteur de base de donnÃ©es est InnoDB.
   * Permet de positionner les variables dans my.cnf:
-    * key_buffer_size: "the size of the buffer used for index blocks". Recommandé pour une base InnoDB : 10M
-    * innodb_buffer_pool_size:"contrÃ´le la taille du cache mémoire pour les données et les index"
-    Recommandé pour une base InnoDB : 70% de la RAM du serveur (basé sur la variable `host_RAM` )
-  * Valeur par défaut:
+    * key_buffer_size: "the size of the buffer used for index blocks". RecommandÃ© pour une base InnoDB : 10M
+    * innodb_buffer_pool_size:"contrÃƒÂ´le la taille du cache mÃ©moire pour les donnÃ©es et les index"
+    RecommandÃ© pour une base InnoDB : 70% de la RAM du serveur (basÃ© sur la variable `host_RAM` )
+  * Valeur par dÃ©faut:
 
 ``` yaml
 mariadb_InnoDB:
@@ -201,12 +201,12 @@ mariadb_InnoDB:
 ```
 
 * `mariadb_MyISAM`:
-  * Variable utilisé si le moteur de base de données est MyISAM.
+  * Variable utilisÃ© si le moteur de base de donnÃ©es est MyISAM.
   * Permet de positionner les variables dans my.cnf:
-    * key_buffer_size: "the size of the buffer used for index blocks". Recommandé pour une base MyISAM : 20% de la RAM du serveur (bassé sur la variable `host_RAM` )
-    * innodb_buffer_pool_size:"contrÃ´le la taille du cache mémoire pour les données et les index"
-    Recommandé pour une base MyISAM : 0M
-  * Valeur par défaut:
+    * key_buffer_size: "the size of the buffer used for index blocks". RecommandÃ© pour une base MyISAM : 20% de la RAM du serveur (bassÃ© sur la variable `host_RAM` )
+    * innodb_buffer_pool_size:"contrÃƒÂ´le la taille du cache mÃ©moire pour les donnÃ©es et les index"
+    RecommandÃ© pour une base MyISAM : 0M
+  * Valeur par dÃ©faut:
 
 ``` yaml
 mariadb_MyISAM:
@@ -218,16 +218,16 @@ mariadb_MyISAM:
 
 * `mariadb_galera_cluster_name`:
   * Nom du cluster Galera
-  * Valeur par défaut:
+  * Valeur par dÃ©faut:
 
 ``` yaml
 mariadb_galera_cluster_name: cluster_name
 ```
 
 * `mariadb_ports_cluster`:
-  * Liste des ports Ã  ouvrir sur firewalld
-  * Cette variable ajoute également la valeur `mariadb_ports` en cas de cluster aux valeur par défaut. En cas de surcharge, penser Ã  ajout le port d'écoute de MariaDB (tcp/3306 par défaut).
-  * Valeur par défaut:
+  * Liste des ports ÃƒÂ  ouvrir sur firewalld
+  * Cette variable ajoute Ã©galement la valeur `mariadb_ports` en cas de cluster aux valeur par dÃ©faut. En cas de surcharge, penser ÃƒÂ  ajout le port d'Ã©coute de MariaDB (tcp/3306 par dÃ©faut).
+  * Valeur par dÃ©faut:
 
 ``` yaml
 mariadb_ports_cluster:
@@ -256,19 +256,4 @@ mariadb_ports_cluster:
   roles:
     - { role: "mariadb" }
 ```
-  
-### Requirements
 
- Lignes Ã  placer dans le fichier requirements.yml du projet après avoir modifié la version.
-
-```yaml
-- src: git@sources.devtools.local:workbench/forge/ansible/mariadb.git
-  scm: git
-  version: v1.0.0
-```
-
-## Divers
-
-Par défaut, le repo utilisé pour télécharger MariaDB et ses pré-requis n'est pas présent sur Centos7. Il faut donc l'ajouter avant d'exécuter ce role.
-
-Donner un exemple de fichier de conf
